@@ -1,16 +1,8 @@
--- script that prepares a MySQL server for the project
--- A database hbnb_test_db
--- A new user hbnb_test (in localhost)
--- The password of hbnb_test should be set to hbnb_test_pwd
--- hbnb_test should have all privileges on the database hbnb_test_db...
--- ...(and only this database)
--- hbnb_test should have SELECT privilege on the database performance_schema...
--- ...(and only this database)
--- If the database hbnb_test_db or the user hbnb_test already exists, your...
--- ...script should not fail
-
+-- prepares a MySQL server for running tests on the project
 CREATE DATABASE IF NOT EXISTS hbnb_test_db;
-CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'hbnb_test_pwd';
-GRANT ALL PRIVILEGES ON hbnb_test_db.* TO 'hbnb_test'@'localhost';
-GRANT SELECT ON performance_schema.* TO 'hbnb_test'@'localhost';
+CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost';
+SET PASSWORD FOR 'hbnb_test'@'localhost' = 'hbnb_test_pwd';
+GRANT USAGE ON *.* TO 'hbnb_test'@'localhost';
+GRANT SELECT ON `performance_schema`.* TO 'hbnb_test'@'localhost';
+GRANT ALL PRIVILEGES ON `hbnb_test_db`.* TO 'hbnb_test'@'localhost';
 FLUSH PRIVILEGES;
